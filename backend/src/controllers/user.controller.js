@@ -6,7 +6,7 @@ import { unlinkSync } from "node:fs";
 import jwt from "jsonwebtoken";
 import { options } from "../constants.js";
 import { Codes } from "../models/codes.model.js";
-
+import path from "path";
 
 const generateAccessAndRefreshToken = async (user) => {
 
@@ -37,7 +37,7 @@ const registerUser = asyncHandler(async (req, res) => {
     let avatarlocalPath = req.files?.avatar?.[0]?.path;
 
     if (!avatarlocalPath) {
-        avatarlocalPath = "public\\temp\\defaultavatar.png";
+        avatarlocalPath = path.join(process.cwd(), ".", "public","temp", "defaultavatar.png");
     }
 
     const avatarImage = await uploadImage(avatarlocalPath);
@@ -184,6 +184,6 @@ const getCollections = asyncHandler(async (req, res) => {
     const collections = await Codes.find({ createdBy: userId });
 
     return res.status(200).json(new ApiResponse(200, "Collections fetched successfully", collections));
-})  
+})
 
 export { registerUser, loginUser, logoutUser, refreshAccessToken, getCollections };

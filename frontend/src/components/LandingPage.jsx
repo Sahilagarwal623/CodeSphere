@@ -31,7 +31,7 @@ const LandingPage = () => {
             {/* Centered Image Section */}
             <div className="flex flex-1 justify-center items-center w-full mt-36">
                 <img
-                    src="/assets/codeditor.png"
+                    src="/codeditor.png"
                     alt="Landing"
                     className="max-w-[800px] w-full h-auto object-contain shadow-lg shadow-gray-500 rounded-lg"
                 />
