@@ -3,14 +3,9 @@ import http from 'http';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import { Server } from "socket.io";
-// import fs from 'fs/promises';
-
-
-// const key = await fs.readFile('cert.key');
-// const cert = await fs.readFile('cert.crt');
 
 const app = express();
-// app.use(express.static(__dirname))
+
 const server = http.createServer( app);
 const io = new Server(server, {
   cors: {
