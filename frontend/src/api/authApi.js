@@ -7,9 +7,6 @@ const registerUser = async (formdata) => {
   // console.log(typeof formdata);
   try {
     const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/users/register`, formdata, {
-      headers: {
-        'Content-Type': 'application/json'
-      },
       withCredentials: true,
     });
     // console.log(response.data);
