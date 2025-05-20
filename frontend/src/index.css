@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+  -webkit-text-fill-color: white !important;
+  /* or your desired Tailwind color */
+  background-color: transparent !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* somewhere in your global CSS (e.g., index.css or App.css) */
+.fake-cursor {
+  @apply border-l-2 border-red-500 ml-[-1px] h-full;
+}
+
+.fake-cursor-label::after {
+  content: attr(data-username);
+  color: #f87171;
+  /* Tailwind's red-400 */
+  font-size: 10px;
+  margin-left: 2px;
+  position: absolute;
+}
