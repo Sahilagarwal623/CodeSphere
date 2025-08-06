@@ -11,9 +11,11 @@
   - **Collaborative Mode** – Invite others to your room and code together in real-time.
   
 - 🧠 **Built with:**
-  - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-  - [Vite](https://vitejs.dev/)
-  - [Tailwind CSS](https://tailwindcss.com/)
+  - [JavaScript]
+  - [Vite]
+  - [Tailwind CSS]
+  - [Docker]
+  - [Monaco Editor]
   
 - 💬 **Integrated Chat**
   - Communicate with your collaborators directly inside the room using **WebSocket-based chat**.
@@ -23,7 +25,7 @@
   - IntelliSense, syntax highlighting, and theming powered by [Monaco](https://microsoft.github.io/monaco-editor/).
 
 - 🔐 **Secure Deployment**
-  - **Frontend** deployed on [Render](https://render.com/)
+  - **Frontend** deployed on [Render]
   - **Backend** hosted on **AWS EC2** with **SSL certificate** and **custom domain**.
   
 - 🐳 **Isolated Code Execution**
@@ -53,7 +55,7 @@
 | Chat & Sync  | WebSockets                     |
 | Backend      | Node.js, Express, AWS EC2      |
 | Execution    | Docker                         |
-| Hosting      | Render (Frontend), AWS (Backend)|
+| Hosting      | Render (Frontend), AWS(Backend)|
 | Domain       | Custom with SSL                |
 
 ---
@@ -62,8 +64,8 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/code-together.git
-cd code-together
+git clone https://github.com/Sahilagarwal623/CodeSphere.git
+cd CodeSphere
 
 # Install frontend dependencies
 cd frontend
@@ -75,4 +77,4 @@ npm run dev
 # Start backend in a separate terminal
 cd ../backend
 npm install
-node index.js
+nodemon index.js
