@@ -9,6 +9,12 @@
 - 🛠️ **Custom Rooms**
   - **Solo Mode** – Create a personal coding space to write and execute code privately.
   - **Collaborative Mode** – Invite others to your room and code together in real-time.
+
+- 🔐 Secure User Authentication
+
+  - JWT Authentication with Access & Refresh Tokens for secure login sessions.
+  
+  - Automatic token refresh without forcing users to log in repeatedly.
   
 - 🧠 **Built with:**
   - [JavaScript]
