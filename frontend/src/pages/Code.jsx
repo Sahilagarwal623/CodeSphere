@@ -362,7 +362,7 @@ export default function Code() {
                     {/* Output Section */}
                     <div className={`absolute bottom-0 right-0 w-full h-1/2 bg-zinc-900 text-gray-200 p-4 rounded-t-md overflow-auto scrollbar-hide z-10 flex-row ${Console ? "" : "hidden"}`}>
                         <div>
-                            <h2 className="text-lg font-semibold mb-2">Output:</h2>
+                            <h2 className="text-lg font-semibold mb-2">Output: (May not displayed due to charges on aws)</h2>
                             <pre className="bg-gray-700 p-2 rounded-md overflow-auto h-32 scrollbar-hide">
                                 {/* Output content goes here */}
                                 {loading ? <span className="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
