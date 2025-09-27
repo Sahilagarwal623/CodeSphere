@@ -35,6 +35,7 @@ export default function Code() {
     const location = useLocation();
     const navigationType = useNavigationType();
     const isInitialMount = useRef(true);
+    const [leftWidth, setLeftWidth] = useState(400);
 
     const [showModal, setShowModal] = useState(false);
     const [title, setTitle] = useState('');
@@ -191,6 +192,36 @@ export default function Code() {
         }
     }, [socketInitialized]);
 
+    const isDragging = useRef(false);
+
+    function startDragging() {
+        isDragging.current = true;
+        document.body.style.cursor = "col-resize";
+    }
+
+    function stopDragging() {
+        isDragging.current = false;
+        document.body.style.cursor = "default";
+    }
+
+    function onDragging(e) {
+        if (!isDragging.current) return;
+        const newWidth = e.clientX - 10;
+        if (newWidth > 200 && newWidth < window.innerWidth - 200) {
+            setLeftWidth(newWidth);
+        }
+    }
+
+    useEffect(() => {
+        window.addEventListener("mousemove", onDragging);
+        window.addEventListener("mouseup", stopDragging);
+        return () => {
+            window.removeEventListener("mousemove", onDragging);
+            window.removeEventListener("mouseup", stopDragging);
+        };
+    }, []);
+
+
 
 
 
@@ -274,7 +305,9 @@ export default function Code() {
 
                 {mode === 'online' && (
 
-                    <div className="w-1/2 h-full bg-zinc-950 text-white p-10 rounded-md relative gap-2">
+                    <div className="w-1/2 h-full bg-zinc-950 text-white p-10 rounded-md relative"
+                        style={{ width: `${leftWidth}px` }}
+                    >
 
                         <div className="absolute bottom-3 left-3 right-3 border-2 border-gray-300 bg-black rounded-md flex flex-col top-2">
                             {/* Chat messages area */}
@@ -344,9 +377,17 @@ export default function Code() {
                     </div>
                 )}
 
+                {/* Divider */}
+                {mode === 'online' && (
+                    <div
+                        className="w-1 bg-gray-600 cursor-col-resize hover:bg-gray-500"
+                        onMouseDown={startDragging}
+                    ></div>
+                )}
+
 
                 {/* Right Half */}
-                <div className={`${mode === 'online' ? 'w-1/2' : 'w-full'} bg-gray-800 rounded-md relative`}>
+                <div className={`${mode === 'online' ? 'w-1/2' : 'w-full'} bg-gray-800 rounded-md relative flex-1`}>
 
                     <CodeEditor
                         getSocket={getSocket}
