@@ -164,7 +164,6 @@ export default function CodeEditor({ getSocket, setsocketInitialized, mode, lang
                 className="px-4 py-2 hover:bg-gray-200 hover:text-black cursor-pointer"
               >
                 {lang}
-                {(lang === 'java') ? ' (name you class as main)' : null}
               </li>
             ))}
           </ul>
