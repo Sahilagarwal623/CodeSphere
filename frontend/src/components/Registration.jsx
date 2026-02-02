@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { registerUser } from '../api/authApi';
 import { useNavigate } from 'react-router-dom';
+import { loginUser } from '../api/authApi';
+import { updateLoginStatus } from '../store/userActions';
+import { useDispatch } from 'react-redux';
+
 
 const Registration = () => {
   const [formData, setFormData] = useState({ username: '', email: '', password: '', fullname: '' });
@@ -9,6 +13,7 @@ const Registration = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -22,12 +27,22 @@ const Registration = () => {
       if (response.success) {
         setError('');
         setSuccess(response.message);
-        setTimeout(() => {
-          navigate('/login') // Redirect to login page after successful registration
-        }, 2000);
+        const res = await loginUser(formData);
+
+        if (res.data.success) {
+          dispatch(updateLoginStatus({ isLoggedIn: true, user: res.data.data.user.username }));
+          setSuccess(res.data.message || 'Login successful!');
+          setError('');
+          localStorage.setItem("accessToken", res.data.data.accessToken);
+          localStorage.setItem("refreshToken", res.data.data.refreshToken);
+          setTimeout(() => {
+            navigate('/dashboard');
+          }, 1000);
+        } else {
+          setError(res.data.message || 'Login failed.');
+          navigate('/login');
+        }
       }
-      setTimeout(() => {
-      }, 1000);
     } catch (err) {
       setError(err.message || 'Registration failed!');
     }
